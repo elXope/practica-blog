@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -15,9 +17,11 @@ class Post
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Field 'Title' is mandatory")]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message:"Field 'Content' is mandatory")]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -27,6 +31,7 @@ class Post
     private ?User $postUser = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Field 'Image' is mandatory")]
     private ?string $image = null;
 
     #[ORM\Column(length: 255)]

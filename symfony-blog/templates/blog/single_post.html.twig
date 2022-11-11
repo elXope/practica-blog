@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
-{% block title %}Single post{% endblock %}
+{% if not post %}
+<h2>Post not found </h2>
+{% else %}
+{% block title %}{{ post.title }}{% endblock %}
 {% block body %}
-<!-- Principal Content Start -->
+{{post.title}}
+{{asset('images/blog/' ~ post.image) }}
+{{post.content}}
+{{post.postUser.name}}
+{{post.publishedAt | date('d') }} {{ post.publishedAt | date('F') }}
+
+{# <!-- Principal Content Start -->
    <div id="single">
      <div class="container">
 
@@ -118,5 +127,6 @@
     <!-- End of Comments -->  
      </div>
    </div>
-<!-- End of Principal Content Start -->
+<!-- End of Principal Content Start --> #}
 {% endblock %}
+{% endif %}
